@@ -1,0 +1,73 @@
+<!--index.wxml-->
+<!-- k线图与数据表格 -->
+<view class="body">
+   <view class="nav">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">K线图</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">数据表格</view>
+  </view>
+<!-- k线图 -->
+ <view class="{{selected?'show':'hidden'}}">
+ <view class="container1">
+  <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+ </view>
+</view>
+<!-- 数据表格 -->
+  <view class="{{selected1?'show':'hidden'}}">
+ <scroll-view scroll-x="true" scroll-y="true" class='scrollClass'>
+  <view class='table'>
+    <view class='table_header'>
+      <view class="th1">
+        <view class='cell_label'>序号</view>
+      </view>
+      <block wx:for="{{indexArray}}" wx:key="">
+        <view wx:if="{{index==0}}">
+          <view class='th0'>
+            <view class="cell_label">{{item}}</view>
+          </view>
+        </view>
+        <view  wx:else="{{index>0}}">
+          <view class='th1'>
+            <view class="cell_label">{{item}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <block wx:for="{{sch_listData}}" wx:key="">
+      <view class='table_main'>
+        <view class='td1'>
+          <view class="cell_label">{{index}}</view>
+        </view>
+        <view class='td0'>
+          <view style="color:#4a8aff">{{item.time}}</view>
+        </view>
+
+         <view class='td1'>
+          <view style="color:#4a8aff">{{item.number}}</view>
+        </view>
+        <view class='td1'>
+            <view style="color:#4a8aff">{{item.price}}</view>
+        </view>
+        <view class='td1'>
+            <view style="color:#4a8aff">{{item.sum}}</view>
+        </view>
+        <view class='td1'>
+            <view style="color:#4a8aff">{{item.one}}</view>
+        </view>
+        <view class='td1'>
+            <view style="color:#4a8aff">{{item.test}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+</view>
+</view>
+
+<view class="borderline"></view>
+<!-- 数据曲线 -->
+<view class="body">
+<view class="container1">
+<view class="font_style">数据曲线</view>
+<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec3 }}"></ec-canvas>
+</view>
+</view>
